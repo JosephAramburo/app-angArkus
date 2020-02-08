@@ -1,1 +1,50 @@
 /* You can add global styles to this file, and also import other style files */
+.background-login{
+    /* background-position: top center; */
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    height: 100%;
+    background: #232d2d !important;
+}
+.registro{
+    padding: 0px;
+    margin-top: 0px;
+}
+.confirmacionPassword {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100%;
+    width: 100%;
+    padding: 10% 0;
+    position: fixed;
+}
+
+.margin-between-btn{
+    margin-right: 6px;
+}
+
+.column-top{
+    padding: 0px 0px 34px 0px !important;
+}
+
+.text-error {
+    font-weight: bold;
+    color: red;
+}
+
+.margin-left-33{
+    margin-left: 33px;
+}
+
+/* input {
+    text-transform: uppercase;
+} */
+
+textarea {
+    text-transform: uppercase;
+}
+
+.width-152px{
+    width: 152px !important;
+}
