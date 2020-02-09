@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LoginInterface } from '@interfaces/login-interface';
 import { ToastrService } from 'ngx-toastr';
+import { LocalStorageService } from 'angular-2-local-storage';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
     private formValidation          : FormValidationService,
     private _authenticationServices : AuthenticationService,
     private _toastr                 : ToastrService,
-    private _route                  : Router
+    private _route                  : Router,
+    private _localStorage           : LocalStorageService
   ) { }
 
   ngOnInit(): void {
@@ -41,6 +43,9 @@ export class LoginComponent implements OnInit {
     };
 
     this._authenticationServices.login(parameters).subscribe(res => {
+      this._localStorage.set('user', res.user);
+      this._localStorage.set('token', res.token);
+      this._toastr.success('Bienvenido!');
       this._route.navigate(['/home']);
     },(err:HttpErrorResponse) => {
       this._toastr.error(this.formValidation.messageError(err));

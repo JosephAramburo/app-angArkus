@@ -1,1 +1,39 @@
-<p>list-todo works!</p>
+<div class="row">
+    <div class="col-12">
+        <div class="card border-secondary">
+            <div class="card-body">
+                <div class="row mb-1">
+                    <div class="col-8 col-sm-9 col-md-10 col-lg-10 col-xl-10">
+                        <h5 class="card-title">TODO</h5>
+                    </div>
+                    <div class="col-4 col-sm-3 col-md-2 col-lg-2 col-xl-2">
+                        <a class="btn btn-success col-12" routerLink="/todo/add"> <i class="fa fa-plus"></i> Nuevo</a>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">DESCRIPCIÓN</th>
+                            <th scope="col">ESTATUS</th>
+                            <th scope="col">OPCIONES</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let row of listData">
+                            <th scope="row">{{row._id}}</th>
+                            <td>{{row.description}}</td>
+                            <td>{{row.status ? 'ACTIVO' : 'INACTIVO'}}</td>
+                            <td>
+                                <a class="btn btn-link" title="Editar"> <i class="fa fa-pencil icon-pencil"></i> </a>
+                                <a class="btn btn-link" title="Eliminar"> <i class="fa fa-trash icon-trash"></i> </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>  
+                </div>
+            </div>
+          </div>
+    </div>
+</div>

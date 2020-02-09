@@ -48,3 +48,11 @@ textarea {
 .width-152px{
     width: 152px !important;
 }
+
+.icon-pencil{
+    color : blue !important;
+}
+
+.icon-trash{
+    color : red !important;
+}

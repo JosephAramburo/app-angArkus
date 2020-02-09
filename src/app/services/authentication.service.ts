@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '@env/environment';
 import { LocalStorageService } from 'angular-2-local-storage';
 import { LoginInterface } from '@interfaces/login-interface';
-import { UserInterface } from '@interfaces/user-interface';
+import { LoginResponseInterface } from '@interfaces/login-response-interface';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +17,8 @@ export class AuthenticationService {
 
   public url : string = `${environment.apiUrl}authentication`;
 
-  login(body: LoginInterface): Observable<UserInterface>{
-    return this.httpClient.post<UserInterface>(`${this.url}/login`, body);
+  login(body: LoginInterface): Observable<LoginResponseInterface>{
+    return this.httpClient.post<LoginResponseInterface>(`${this.url}/login`, body);
   }
 
   logOut(body: LoginInterface): Observable<any>{
