@@ -18,7 +18,7 @@ export class AuthenticationService {
   public url : string = `${environment.apiUrl}authentication`;
 
   login(body: LoginInterface): Observable<UserInterface>{
-    return this.httpClient.post<UserInterface>(this.url, body);
+    return this.httpClient.post<UserInterface>(`${this.url}/login`, body);
   }
 
   logOut(body: LoginInterface): Observable<any>{

@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 //Library
 import { LocalStorageModule }       from 'angular-2-local-storage';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,6 +33,7 @@ import { LoginComponent } from './components/login/login.component';
       prefix      : 'ngApp',
       storageType : 'localStorage'
     }),
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

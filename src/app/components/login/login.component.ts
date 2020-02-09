@@ -5,11 +5,7 @@ import { AuthenticationService } from '@services/authentication.service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LoginInterface } from '@interfaces/login-interface';
-
-// interface ErrorMessage{
-//   show    : boolean;
-//   message : string;
-// }
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -18,11 +14,12 @@ import { LoginInterface } from '@interfaces/login-interface';
 })
 export class LoginComponent implements OnInit {
   frmLogin: FormGroup;
-  // error   : ErrorMessage = { show: false, message: "" };
 
   constructor(
     private formValidation          : FormValidationService,
-    private _authenticationServices : AuthenticationService
+    private _authenticationServices : AuthenticationService,
+    private _toastr                 : ToastrService,
+    private _route                  : Router
   ) { }
 
   ngOnInit(): void {
@@ -34,8 +31,6 @@ export class LoginComponent implements OnInit {
 
   login():void{
     if(!this.frmLogin.valid){
-      // this.error.show = true;
-      // this.error.message = "Faltan datos por ingresar";
       this.formValidation.validateAllFormFields(this.frmLogin);
       return;
     }
@@ -46,9 +41,9 @@ export class LoginComponent implements OnInit {
     };
 
     this._authenticationServices.login(parameters).subscribe(res => {
-      console.log("response",res);
+      this._route.navigate(['/home']);
     },(err:HttpErrorResponse) => {
-      console.log("err",err);
+      this._toastr.error(this.formValidation.messageError(err));
     });
 
   }
