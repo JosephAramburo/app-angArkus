@@ -9,7 +9,7 @@ import { QuestionModalComponent } from '@components/modal/question-modal/questio
 
 interface FiltersTable{
   description : string;
-  status      : boolean;
+  status      : string;
 }
 
 @Component({
@@ -23,7 +23,7 @@ export class ListTodoComponent implements OnInit {
   countData : number          = 0;
   filters   : FiltersTable    = {
     description : '',
-    status      : null
+    status      : 'null'
   };
 
   constructor(
@@ -68,7 +68,7 @@ export class ListTodoComponent implements OnInit {
       page        : this.page,
       description : this.filters.description,
       file        : null,
-      status      : this.filters.status.toString() === 'null' ? null : this.filters.status,
+      status      : this.filters.status.toString() === 'null' ? null : Boolean(JSON.parse(this.filters.status)),
       _id         : null,
       typeFile    : null
     };
