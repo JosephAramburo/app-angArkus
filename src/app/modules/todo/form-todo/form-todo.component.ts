@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FormValidationService } from '@services/form-validation.service';
@@ -21,7 +21,7 @@ export class FormTodoComponent implements OnInit {
   type            : string  = 'save';
   textInputImage  : string  = 'Selecciona un archivo...';
   _id             : string  = '';
-  image           : string | ArrayBuffer;  
+  image           : string | ArrayBuffer;
 
   constructor(
     private _formValidationService  : FormValidationService,
@@ -41,12 +41,12 @@ export class FormTodoComponent implements OnInit {
       description : new FormControl('', Validators.required),
       status      : new FormControl(true, Validators.required),
       image       : new FormControl('', Validators.required)
-    });
+    });    
   }
 
   getParams():void{
     this._route.params.subscribe(params => {
-      this._id = typeof(params.id) !== 'undefined' ? params.id : '';
+      this._id = typeof(params.id) !== 'undefined'  && params.id !== 'add' ? params.id : '';
       
       if(this._id !== ''){
         this.getTodoById();

@@ -33,26 +33,14 @@
     color: red;
 }
 
-.margin-left-33{
-    margin-left: 33px;
-}
-
-/* input {
-    text-transform: uppercase;
-} */
-
-textarea {
-    text-transform: uppercase;
-}
-
-.width-152px{
-    width: 152px !important;
-}
-
 .icon-pencil{
     color : blue !important;
 }
 
 .icon-trash{
     color : red !important;
+}
+
+.textTop{
+    vertical-align: top !important;
 }

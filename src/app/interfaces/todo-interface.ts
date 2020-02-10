@@ -6,4 +6,5 @@ export interface TodoInterface {
     typeFile    : string;
     createdAt   ?: Date;
     updatedAt   ?: Date;
+    page        ?: number;
 }

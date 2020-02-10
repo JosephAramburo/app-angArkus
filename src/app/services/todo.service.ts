@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '@env/environment';
 import { LocalStorageService } from 'angular-2-local-storage';
 import { TodoInterface } from '@interfaces/todo-interface';
+import { TodoResponseInterface } from '@interfaces/todo-response-interface';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class TodoService {
     return this.httpClient.get<TodoInterface>(`${this.url}/${id}`);
   }
 
-  get(params: TodoInterface): Observable<TodoInterface[]>{
+  get(params: TodoInterface): Observable<TodoResponseInterface>{
     let httpParams = new HttpParams();
 
     for(let key in params){
@@ -28,7 +29,7 @@ export class TodoService {
         httpParams = httpParams.append(key, params[key]);
     }
 
-    return this.httpClient.get<TodoInterface[]>(`${this.url}`,{params : httpParams});
+    return this.httpClient.get<TodoResponseInterface>(`${this.url}`,{params : httpParams});
   }
 
   save(params: TodoInterface): Observable<TodoInterface>{

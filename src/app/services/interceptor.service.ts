@@ -27,11 +27,10 @@ export class InterceptorService {
     if (typeof(currentUser) !== 'undefined' && currentUser !== null) {
         request = request.clone({
             setHeaders: {
-                Authorization: currentUser
+                Authorization: `Bearer ${currentUser}`
             }
         });
     }
-
     return next.handle(request).pipe(
       map((event: HttpEvent<any>) => {
           if (event instanceof HttpResponse)

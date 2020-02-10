@@ -9,6 +9,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LocalStorageModule }       from 'angular-2-local-storage';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { JwtModule, JWT_OPTIONS  }  from '@auth0/angular-jwt';
 
 //SERVICES
 import { InterceptorService } from '@services/interceptor.service';
@@ -19,6 +20,7 @@ import { HomeComponent } from './components/home/home.component';
 import { InitComponent } from './components/init/init.component';
 import { LoginComponent } from './components/login/login.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { QuestionModalComponent } from './components/modal/question-modal/question-modal.component';
 
 export function jwtOptionsFactory(tokenService) {
   return {
@@ -34,7 +36,8 @@ export function jwtOptionsFactory(tokenService) {
     HomeComponent,
     InitComponent,
     LoginComponent,
-    NavBarComponent
+    NavBarComponent,
+    QuestionModalComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,14 @@ export function jwtOptionsFactory(tokenService) {
       storageType : 'localStorage'
     }),
     ToastrModule.forRoot(),
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    JwtModule.forRoot({
+      jwtOptionsProvider: {
+        provide: JWT_OPTIONS,
+        useFactory: jwtOptionsFactory,
+        deps: [InterceptorService]
+      }
+    })
   ],
   providers: [
     {
@@ -57,6 +67,9 @@ export function jwtOptionsFactory(tokenService) {
       multi: true
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[
+    QuestionModalComponent
+  ]
 })
 export class AppModule { }
