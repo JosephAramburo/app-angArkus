@@ -6,14 +6,14 @@
                     <div class="col-8 col-sm-9 col-md-10 col-lg-10 col-xl-10">
                         <h5 class="card-title text-uppercase">{{title}}</h5>
                     </div>
-                </div>                
+                </div>
                 <div class="row">
                     <div class="col-12">
                         <form [formGroup]="frmTodo" autocomplete="off" novalidate>
-                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                            <div class="col-12 col-sm-12 col-md-8 col-lg-7 col-xl-6">
                                 <div class="form-group row">
-                                    <label class="col-4 font-weight-bold text-right">Descripción*:</label>
-                                    <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">           
+                                    <label class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 font-weight-bold text-right">Descripción*:</label>
+                                    <div class="col-12 col-sm-7 col-md-7 col-lg-7 col-xl-7">
                                         <input type="text" class="form-control col-12" formControlName="description" [ngClass]="inputValid('description')" autofocus>
                                         <div *ngIf="showErrors('description')" class="text-error">
                                             <div *ngIf="frmTodo.controls['description'].errors.required">Campo requerido.</div>
@@ -21,34 +21,30 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-4 font-weight-bold text-right">Adjuntar archivo*:</label>
-                                    <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 custom-file">
-                                        <!--  formControlName="image" [ngClass]="inputValid('description')" -->
-                                        <input type="file" class="custom-file-input col-12" id="customFile" formControlName="image" [ngClass]="inputValid('description')">
-                                        <label class="custom-file-label" for="customFile">Seleccionar archivo</label>
-                                        <div *ngIf="showErrors('description')" class="text-error">
-                                            <div *ngIf="frmTodo.controls['description'].errors.required">Campo requerido.</div>
+                                    <label class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 font-weight-bold text-right">Adjuntar archivo*:</label>
+                                    <div class="col-12 col-sm-7 col-md-7 col-lg-7 col-xl-7 custom-file">
+                                        <input type="file" class="custom-file-input col-12" id="customFile" formControlName="image" [ngClass]="inputValid('image')" (change)="fileChange($event)" accept="image/*">
+                                        <label class="custom-file-label" for="customFile">{{textInputImage}}</label>
+                                        <div *ngIf="showErrors('image')" class="text-error">
+                                            <div *ngIf="frmTodo.controls['image'].errors.required">Campo requerido.</div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                 <div class="form-group row">
-                                    <label class="col-4 font-weight-bold text-right">Estatus*:</label>
-                                    <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">           
-                                        <div class="btn-group btn-group-toggle">
-                                            <!-- <label class="btn btn-success" ngbButtonLabel>
-                                              <input type="checkbox" ngbButton [(ngModel)]="model.left"> ACTIVO
-                                            </label>
-                                            <label class="btn btn-danger" ngbButtonLabel>
-                                              <input type="checkbox" ngbButton [(ngModel)]="model.middle"> INACTIVO
-                                            </label> -->
-                                          </div>
+                                    <label class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 font-weight-bold text-right">Estatus*:</label>
+                                    <div class="col-7 col-sm-7 col-md-7 col-lg-7 col-xl-7">
+                                        <ui-switch formControlName="status"></ui-switch>
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-10 col-sm-6 col-md-5 col-lg-4 col-xl-3 offset-2 offset-sm-6 offset-md-7 offset-lg-8 offset-xl-9">
+                                    <button class="btn btn-success mr-1" (click)="save()"><i class="fa fa-save"></i> GUARDAR</button>
+                                    <button class="btn btn-danger" routerLink="/todo"><i class="fa fa-arrow-left"></i> CANCELAR</button>
+                                </div>
+                            </div>
                         </form>
-                    </div>        
+                    </div>
                 </div>
             </div>
           </div>

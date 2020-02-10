@@ -26,7 +26,7 @@
                             <td>{{row.description}}</td>
                             <td>{{row.status ? 'ACTIVO' : 'INACTIVO'}}</td>
                             <td>
-                                <a class="btn btn-link" title="Editar"> <i class="fa fa-pencil icon-pencil"></i> </a>
+                                <a class="btn btn-link" [routerLink]="['/todo/'+row._id]"  title="Editar"> <i class="fa fa-pencil icon-pencil"></i> </a>
                                 <a class="btn btn-link" title="Eliminar"> <i class="fa fa-trash icon-trash"></i> </a>
                             </td>
                         </tr>
