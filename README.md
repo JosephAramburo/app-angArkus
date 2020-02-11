@@ -1,27 +1,32 @@
-# AppAng
+# App Ang V1.0.0
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.1.
 
-## Development server
+##### Requisitos para instalación:
+- NodeJs https://nodejs.org/es/download/
+- GIT https://git-scm.com/downloads
+- Angular cli https://angular.io/cli
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+#####Pasos para descarga y correr el proyecto:
+1. Abrir linea de comandos.
+2. Situarce en el directorio donde se descargara el código.
+3. Descargar el proyecto:
+    ```
+    git clone https://github.com/JosephAramburo/app-ang9.git
+    ```
+4. Entrar a la carpeta **app-ang9**
+    ```
+    cd app-ang9
+    ```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+5. Editar el archivo environment.ts
+    ```
+    apiUrl = URL_API_BACKEND
+    ```
+6. Correr los siguientes comandos:
+    ```
+    npm i           => Descargar dependencias
+    npm serve -o    => Correr aplicación
+    ```
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+> Author : Joseph Aramburo
