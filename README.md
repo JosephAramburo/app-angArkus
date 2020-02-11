@@ -7,7 +7,7 @@
 - Angular cli https://angular.io/cli
 
 
-#####Pasos para descarga y correr el proyecto:
+##### Pasos para descarga y correr el proyecto:
 1. Abrir linea de comandos.
 2. Situarce en el directorio donde se descargara el código.
 3. Descargar el proyecto:
