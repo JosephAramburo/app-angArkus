@@ -1,1 +1,76 @@
-<p>list-employer works!</p>
+<div class="row">
+    <div class="col-12">
+        <div class="card border-secondary">
+            <div class="card-body">
+                <div class="row mb-1">
+                    <div class="col-8 col-sm-9 col-md-10 col-lg-10 col-xl-10">
+                        <h5 class="card-title">Empleados</h5>
+                    </div>
+                    <div class="col-4 col-sm-3 col-md-2 col-lg-2 col-xl-2">
+                        <a class="btn btn-success col-12" routerLink="/employer/add"> <i class="fa fa-plus"></i> Nuevo</a>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th class="textTop" scope="col">ID</th>
+                            <th scope="col">
+                                EMAIL
+                                <input type="text" id="email" class="form-control form-control-sm col-12" minlength="3" [(ngModel)]="filters.email" [ngModelOptions]="{standalone:true}" (ngModelChange)="changeFilter(false,true)">
+                            </th>
+                            <th scope="col">
+                                NOMBRE COMPLETO
+                                <input type="text" id="name" class="form-control form-control-sm col-12" minlength="3" [(ngModel)]="filters.name" [ngModelOptions]="{standalone:true}" (ngModelChange)="changeFilter(true, false)">
+                            </th>
+                            <!-- <th scope="col">
+                                FECHA DE INGRESO
+                                <input type="text" id="admissionDate" class="form-control form-control-sm col-12" minlength="3" [(ngModel)]="filters.admissionDate" [ngModelOptions]="{standalone:true}" (ngModelChange)="changeFilter(true)">
+                            </th> -->
+                            <th scope="col">
+                                ROL
+                                <select  class="form-control form-control-sm col-12" [(ngModel)]="filters.role" [ngModelOptions]="{standalone:true}" (ngModelChange)="changeFilter()">
+                                    <option selected value="0">TODOS</option>
+                                    <option value="1">ADMIN</option>
+                                    <option value="2">EMPLEADO</option>
+                                </select>
+                            </th>
+                            <th scope="col">
+                                ESTATUS
+                                <select  class="form-control form-control-sm col-12" [(ngModel)]="filters.status" [ngModelOptions]="{standalone:true}" (ngModelChange)="changeFilter()">
+                                    <option selected value="2">TODOS</option>
+                                    <option value="1">ACTIVO</option>
+                                    <option value="0">INACTIVO</option>
+                                </select>
+                            </th>
+                            <th class="textTop" scope="col">OPCIONES</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let row of listData">
+                            <th scope="row">{{row.id}}</th>
+                            <td>{{row.email}}</td>
+                            <td>{{row.name}} {{row.lastName}} {{row.motherLastName}}</td>
+                            <td>{{row.role == 1 ? 'ADMIN' : 'EMPLEADO'}}</td>
+                            <td>{{row.status ? 'ACTIVO' : 'INACTIVO'}}</td>
+                            <td>
+                                <a class="btn btn-link" [routerLink]="['/todo/'+row._id]"  title="Editar"> <i class="fa fa-pencil icon-pencil"></i> </a>
+                                <a class="btn btn-link" title="Eliminar" (click)="delete(row._id)"> <i class="fa fa-trash icon-trash"></i> </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>  
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-10 col-md-5 col-lg-5 col-xl-5 offset-sm-2 offset-md-3 offset-lg-3 offset-xl-4">
+                        <!-- <ngb-pagination
+                            [(page)]="page"
+                            pageSize="5"
+                            [collectionSize]="countData"
+                            (pageChange)="pageChange()"></ngb-pagination> -->
+                    </div>
+                </div>
+            </div>
+          </div>
+    </div>
+</div>
