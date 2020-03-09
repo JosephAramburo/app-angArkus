@@ -1,6 +1,8 @@
 import { LoginInterface } from '@interfaces/login-interface';
 
 export interface LoginResponseInterface {
-    user    : LoginInterface;
+    id      : number;
+    name    : string;
+    isAdmin : boolean;
     token   : string;
 }

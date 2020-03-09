@@ -7,6 +7,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { LoginInterface } from '@interfaces/login-interface';
 import { ToastrService } from 'ngx-toastr';
 import { LocalStorageService } from 'angular-2-local-storage';
+import { NgxPermissionsService } from 'ngx-permissions';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
     private _authenticationServices : AuthenticationService,
     private _toastr                 : ToastrService,
     private _route                  : Router,
-    private _localStorage           : LocalStorageService
+    private _localStorage           : LocalStorageService,
+    private _permissionsService     : NgxPermissionsService
   ) { }
 
   ngOnInit(): void {
@@ -43,10 +45,23 @@ export class LoginComponent implements OnInit {
     };
 
     this._authenticationServices.login(parameters).subscribe(res => {
-      this._localStorage.set('user', res.user);
+      const permissions = res.isAdmin ? ["ADMIN"] : [];
+
+      this._localStorage.set('name', res.name);
+      this._localStorage.set('id', res.id);
       this._localStorage.set('token', res.token);
+      this._localStorage.set('isAdmin', res.isAdmin);
+      this._localStorage.set('permissions', permissions);
+
+      this._permissionsService.addPermission(permissions);
+
       this._toastr.success('Bienvenido!');
-      this._route.navigate(['/home']);
+
+      if(res.isAdmin)
+        this._route.navigate(['/home']);
+      else
+        this._route.navigate([`/payroll/${res.id}`]);
+
     },(err:HttpErrorResponse) => {
       this._toastr.error(this.formValidation.messageError(err));
     });

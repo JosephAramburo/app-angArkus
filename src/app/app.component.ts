@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
 import { LocalStorageService } from 'angular-2-local-storage';
 import { JwtHelperService } from "@auth0/angular-jwt";
+import { NgxPermissionsService } from 'ngx-permissions';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,8 @@ export class AppComponent implements OnInit{
 
   constructor(
     private localStorageService : LocalStorageService,
-    private _router             : Router
+    private _router             : Router,
+    private permissionsService  : NgxPermissionsService
   ){ }
 
   ngOnInit(){
@@ -25,5 +27,8 @@ export class AppComponent implements OnInit{
         this._router.navigate(['/login']);
       }
     }
+    if (this.localStorageService.get("permissions") !== null)
+        this.permissionsService.loadPermissions(this.localStorageService.get("permissions"));
+
   }
 }

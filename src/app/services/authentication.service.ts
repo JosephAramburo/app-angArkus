@@ -15,7 +15,7 @@ export class AuthenticationService {
     private httpClient  : HttpClient, 
     private localStorage:LocalStorageService) { }
 
-  public url : string = `${environment.apiUrl}authentication`;
+  public url : string = `${environment.apiUrl}authorization`;
 
   login(body: LoginInterface): Observable<LoginResponseInterface>{
     return this.httpClient.post<LoginResponseInterface>(`${this.url}/login`, body);

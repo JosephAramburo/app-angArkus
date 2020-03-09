@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { NgxPermissionsGuard } from 'ngx-permissions';
 
 //COMPONENTS
 import { LoginComponent } from '@components/login/login.component';
@@ -7,6 +8,8 @@ import { HomeComponent } from '@components/home/home.component';
 import { InitComponent } from '@components/init/init.component';
 //MODULES
 import { TodoModule } from '@modules/todo/todo.module';
+import { EmployerModule } from '@modules/employer/employer.module';
+import { PayrollModule } from '@modules/payroll/payroll.module';
 
 const routes: Routes = [
   {
@@ -24,17 +27,28 @@ const routes: Routes = [
       {
         path      : 'home',
         component :  HomeComponent,
+        canActivate: [NgxPermissionsGuard],
         data      : {
-          module:"Dashboard",
-          title: "Dashboard",
-          icon:'fa fa-home',
-          show:false,
-          permission:'app-all'
+          permissions: {
+            only: 'ADMIN',
+            redirectTo: '/login'
+          }
         }
       },
       {
-        path:'todo',
-        loadChildren:() => TodoModule
+        path:'employer',
+        loadChildren:() => EmployerModule,
+        canActivate: [NgxPermissionsGuard],
+        data      : {
+          permissions: {
+            only: 'ADMIN',
+            redirectTo: '/login'
+          }
+        }
+      },
+      {
+        path:'payroll',
+        loadChildren:() => PayrollModule
       }
     ]
   },

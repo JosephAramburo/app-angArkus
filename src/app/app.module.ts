@@ -10,6 +10,7 @@ import { LocalStorageModule }       from 'angular-2-local-storage';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { JwtModule, JWT_OPTIONS  }  from '@auth0/angular-jwt';
+import { NgxPermissionsModule } from 'ngx-permissions';
 
 //SERVICES
 import { InterceptorService } from '@services/interceptor.service';
@@ -58,7 +59,8 @@ export function jwtOptionsFactory(tokenService) {
         useFactory: jwtOptionsFactory,
         deps: [InterceptorService]
       }
-    })
+    }),
+    NgxPermissionsModule.forRoot()
   ],
   providers: [
     {
