@@ -1,1 +1,144 @@
-<p>frm-employer works!</p>
+<div class="row">
+    <div class="col-12">
+        <div class="card border-secondary">
+            <div class="card-body">
+                <div class="row mb-1">
+                    <div class="col-8 col-sm-9 col-md-10 col-lg-10 col-xl-10">
+                        <h5 class="card-title text-uppercase">{{title}}</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <form [formGroup]="frmEmployer" autocomplete="off" novalidate>
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-8 col-lg-7 col-xl-6">
+                                    <div class="form-group row">
+                                        <label class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 font-weight-bold text-right">Email*:</label>
+                                        <div class="col-12 col-sm-7 col-md-7 col-lg-7 col-xl-7 paddingInput">
+                                            <input type="email" id="email" class="form-control col-12" formControlName="email" [ngClass]="inputValid('email')" autofocus>
+                                            <div *ngIf="showErrors('email')" class="text-error">
+                                                <div *ngIf="frmEmployer.controls['email'].errors.required">Campo requerido.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 font-weight-bold text-right">Password*:</label>
+                                        <div class="col-12 col-sm-7 col-md-7 col-lg-7 col-xl-7 paddingInput">
+                                            <input type="password" id="password" class="form-control col-12" formControlName="password" [ngClass]="inputValid('password')">
+                                            <div *ngIf="showErrors('password')" class="text-error">
+                                                <div *ngIf="frmEmployer.controls['password'].errors.required">Campo requerido.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 font-weight-bold text-right">Nombre*:</label>
+                                        <div class="col-12 col-sm-7 col-md-7 col-lg-7 col-xl-7 paddingInput">
+                                            <input type="text" id="name" class="form-control col-12" formControlName="name" [ngClass]="inputValid('name')">
+                                            <div *ngIf="showErrors('name')" class="text-error">
+                                                <div *ngIf="frmEmployer.controls['name'].errors.required">Campo requerido.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 font-weight-bold text-right">Apellido Paterno*:</label>
+                                        <div class="col-12 col-sm-7 col-md-7 col-lg-7 col-xl-7 paddingInput">
+                                            <input type="text" id="lastName" class="form-control col-12" formControlName="lastName" [ngClass]="inputValid('lastName')">
+                                            <div *ngIf="showErrors('lastName')" class="text-error">
+                                                <div *ngIf="frmEmployer.controls['lastName'].errors.required">Campo requerido.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 font-weight-bold text-right">Apellido Materno*:</label>
+                                        <div class="col-12 col-sm-7 col-md-7 col-lg-7 col-xl-7 paddingInput">
+                                            <input type="text" id="motherLastName" class="form-control col-12" formControlName="motherLastName" [ngClass]="inputValid('motherLastName')">
+                                            <div *ngIf="showErrors('motherLastName')" class="text-error">
+                                                <div *ngIf="frmEmployer.controls['motherLastName'].errors.required">Campo requerido.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 font-weight-bold text-right">Rol*:</label>
+                                        <div class="col-12 col-sm-7 col-md-7 col-lg-7 col-xl-7 paddingInput">
+                                            <select id="role" class="form-control col-12" formControlName="role" [ngClass]="inputValid('role')">
+                                                <option value="1">ADMIN</option>
+                                                <option value="2">EMPLEADO</option>
+                                            </select>
+                                            <div *ngIf="showErrors('role')" class="text-error">
+                                                <div *ngIf="frmEmployer.controls['role'].errors.required">Campo requerido.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-8 col-lg-7 col-xl-6">
+                                    <div class="form-group row">
+                                        <label class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 font-weight-bold text-right">Fecha de Ingreso*:</label>
+                                        <div class="col-12 col-sm-7 col-md-7 col-lg-7 col-xl-7 paddingInput">
+                                            <div class="input-group">
+                                                <input placeholder="yyyy-mm-dd"  name="admissionDate" class="form-control col-12" formControlName="admissionDate" [ngClass]="inputValid('admissionDate')" ngbDatepicker #d="ngbDatepicker">
+                                                <div class="input-group-append">
+                                                  <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><i class="fa fa-calendar"></i></button>
+                                                </div>
+                                              </div>
+                                            <div *ngIf="showErrors('admissionDate')" class="text-error">
+                                                <div *ngIf="frmEmployer.controls['admissionDate'].errors.required">Campo requerido.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 font-weight-bold text-right">Ingreso Base*:</label>
+                                        <div class="col-12 col-sm-7 col-md-7 col-lg-7 col-xl-7 paddingInput">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend"><span class="input-group-text">$</span></div>
+                                                <input type="text" id="baseIncome" class="form-control col-12" formControlName="baseIncome" [ngClass]="inputValid('baseIncome')">
+                                            </div>
+                                            <div *ngIf="showErrors('baseIncome')" class="text-error">
+                                                <div *ngIf="frmEmployer.controls['baseIncome'].errors.required">Campo requerido.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 font-weight-bold text-right">Deducción De Desayuno*:</label>
+                                        <div class="col-12 col-sm-7 col-md-7 col-lg-7 col-xl-7 paddingInput">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend"><span class="input-group-text">$</span></div>
+                                                <input type="text" id="breakfastDeduction" class="form-control col-12" formControlbreakfastDeduction="breakfastDeduction" [ngClass]="inputValid('breakfastDeduction')">
+                                            </div>                                            
+                                            <div *ngIf="showErrors('breakfastDeduction')" class="text-error">
+                                                <div *ngIf="frmEmployer.controls['breakfastDeduction'].errors.required">Campo requerido.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 font-weight-bold text-right">Deducción de Ahorro*:</label>
+                                        <div class="col-12 col-sm-7 col-md-7 col-lg-7 col-xl-7 paddingInput">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend"><span class="input-group-text">$</span></div>
+                                                <input type="text" id="savingsDeduction" class="form-control col-12" formControlName="savingsDeduction" [ngClass]="inputValid('savingsDeduction')">
+                                            </div> 
+                                            <div *ngIf="showErrors('savingsDeduction')" class="text-error">
+                                                <div *ngIf="frmEmployer.controls['savingsDeduction'].errors.required">Campo requerido.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 font-weight-bold text-right">Estatus*:</label>
+                                        <div class="col-7 col-sm-7 col-md-7 col-lg-7 col-xl-7 paddingInput">
+                                            <ui-switch formControlName="status"></ui-switch>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-10 col-sm-6 col-md-5 col-lg-4 col-xl-3 offset-2 offset-sm-6 offset-md-7 offset-lg-8 offset-xl-9">
+                                    <button class="btn btn-success mr-1" (click)="save()"><i class="fa fa-save"></i> GUARDAR</button>
+                                    <button class="btn btn-danger" routerLink="/employer"><i class="fa fa-arrow-left"></i> CANCELAR</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -45,6 +45,7 @@ export class ListEmployerComponent implements OnInit {
     this._employerService.get(params).subscribe(res => {
       this.listData   = res.employers;
       this.countData  = res.count;
+      this.page       = res.page;
     }, (err : HttpErrorResponse) => {
       this._toastService.error(this._formValidationService.messageError(err));
     });
@@ -77,16 +78,17 @@ export class ListEmployerComponent implements OnInit {
     //   _id         : null,
     //   typeFile    : null
     // };
+    this.filters.page = this.page;
     this.getData(this.filters);
   }
 
   delete(_id : string):void{
     const modal = this.modalService.open(QuestionModalComponent, { size: 'md', centered : true });
-    modal.componentInstance.title     = 'EMPLOYER';
+    modal.componentInstance.title     = 'Empleados';
     modal.componentInstance.question  = '¿Desea inactivar el registro?';
 
     modal.result.then(() => {
-      // this.deleteRow(_id);
+      this.deleteRow(_id);
     }).catch(()=> {
     });
   }

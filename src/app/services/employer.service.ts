@@ -26,7 +26,7 @@ export class EmployerService {
     return this.httpClient.get<EmployerFiltersResponseInterface>(`${this.url}`,{params : httpParams});
   }
 
-  getbyId(id : string): Observable<EmployerInterface>{
+  getbyId(id : number): Observable<EmployerInterface>{
     return this.httpClient.get<EmployerInterface>(`${this.url}/${id}`);
   } 
 
