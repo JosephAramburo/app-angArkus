@@ -1,1 +1,89 @@
-<p>my-payroll works!</p>
+<div class="row">
+    <div class="col-12">
+        <div class="card border-secondary">
+            <div class="card-body">
+                <div class="row mb-1">
+                    <div class="col-8 col-sm-9 col-md-10 col-lg-10 col-xl-9">
+                        <h5 class="card-title">{{title}}</h5>
+                    </div>
+                    <ng-template [ngxPermissionsOnly]="'ADMIN'">
+                        <div class="col-4 col-sm-3 col-md-2 col-lg-2 col-xl-3">
+                            <button class="btn btn-primary" (click)="modalQuestion()"><i class="fa fa-balance-scale"></i> GENERAR NÓMINAS</button>
+                        </div>
+                    </ng-template>                       
+                </div>                
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead class="thead-dark">
+                        <tr>
+                            <ng-template [ngxPermissionsOnly]="'ADMIN'">
+                                <th class="textTop" scope="col" >
+                                    ID
+                                    <input type="text" id="id" class="form-control form-control-sm col-12" minlength="3" [(ngModel)]="filters.employerId" [ngModelOptions]="{standalone:true}" (ngModelChange)="changeFilter()">
+                                </th>
+                                <th scope="col">
+                                    CORREO
+                                    <input type="text" id="email" class="form-control form-control-sm col-12" minlength="3" [(ngModel)]="filters.email" [ngModelOptions]="{standalone:true}" (ngModelChange)="changeFilter()">
+                                </th>
+                                <th scope="col">
+                                    EMPLEADO
+                                    <input type="text" id="employer" class="form-control form-control-sm col-12" minlength="3" [(ngModel)]="filters.employer" [ngModelOptions]="{standalone:true}" (ngModelChange)="changeFilter()">
+                                </th>
+                            </ng-template>                            
+                            <th class="textTop" scope="col">
+                                MES
+                                <select  class="form-control form-control-sm" [(ngModel)]="filters.month" [ngModelOptions]="{standalone:true}" (ngModelChange)="changeFilter()">
+                                    <option selected value="{{month.id}}" *ngFor="let month of months" >{{month.text}}</option>
+                                </select>
+                            </th>
+                            <th class="textTop" scope="col">
+                                AÑO
+                                <select  class="form-control form-control-sm" [(ngModel)]="filters.year" [ngModelOptions]="{standalone:true}" (ngModelChange)="changeFilter()">
+                                    <option selected value="{{year.id}}" *ngFor="let year of years" >{{year.text}}</option>
+                                </select>
+                            </th>
+                            <ng-template [ngxPermissionsOnly]="'ADMIN'">
+                                <th class="textTop" scope="col">
+                                    ESTATUS
+                                    <select  class="form-control form-control-sm col-12" [(ngModel)]="filters.status" [ngModelOptions]="{standalone:true}" (ngModelChange)="changeFilter()">
+                                        <option selected value="2">TODOS</option>
+                                        <option value="1">ACTIVO</option>
+                                        <option value="0">INACTIVO</option>
+                                    </select>
+                                </th>
+                            </ng-template>                            
+                            <th class="textTop" scope="col">OPCIONES</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let row of listData">
+                            <ng-template [ngxPermissionsOnly]="'ADMIN'">
+                                <th scope="row">{{row.id}}</th>
+                                <td>{{row.email}}</td>
+                                <td>{{row.name}}</td>
+                            </ng-template>                            
+                            <td>{{row.receiptPeriod}}</td>
+                            <td>{{row.year}}</td>
+                            <ng-template [ngxPermissionsOnly]="'ADMIN'">
+                                <td>{{row.status ? 'ACTIVO' : 'INACTIVO'}}</td>
+                            </ng-template>
+                            <td>
+                                <button class="btn btn-link" title="Ver recibo" (click)="showPayroll(row)"> <i class="fa fa-institution icon-pencil"></i> </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>  
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-10 col-md-5 col-lg-5 col-xl-5 offset-sm-2 offset-md-3 offset-lg-3 offset-xl-4">
+                        <!-- <ngb-pagination
+                            [(page)]="page"
+                            pageSize="5"
+                            [collectionSize]="countData"
+                            (pageChange)="pageChange()"></ngb-pagination> -->
+                    </div>
+                </div>
+            </div>
+          </div>
+    </div>
+</div>

@@ -51,18 +51,21 @@ export class FrmEmployerComponent implements OnInit {
       admissionDate         : new FormControl(this.calendar.getToday(), Validators.required),
       baseIncome            : new FormControl('', Validators.required),
       breakfastDeduction    : new FormControl('', Validators.required),
-      savingsDeduction      : new FormControl('', Validators.required)      
+      savingsDeduction      : new FormControl('', Validators.required),     
+      gasolineCard          : new FormControl('', Validators.required),     
     });        
   }
 
   getParams():void{
     this._route.params.subscribe(params => {
-      this.id = typeof(params.id) !== 'undefined'  && params.id !== 'add' ? Number.parseInt(params.id) : null;
+      this.id = typeof(params.id) !== 'undefined'  && params.id !== 'add' ? Number.parseInt(params.id) : 0;
 
-      if(this.id !== null){
+      if(this.id !== 0){
         this.getById();
         this.type   = 'update';
         this.title  = 'Editar Empleado';
+      }else{
+        this.frmEmployer.get('password').setValidators(Validators.required)
       }
     });
   }
@@ -78,10 +81,11 @@ export class FrmEmployerComponent implements OnInit {
       this.frmEmployer.get('status').setValue(res.status);
       this.frmEmployer.get('baseIncome').setValue(res.baseIncome);
       this.frmEmployer.get('breakfastDeduction').setValue(res.breakfastDeduction);
-      this.frmEmployer.get('savingsDeduction').setValue(res.savingsDeduction);  
+      this.frmEmployer.get('savingsDeduction').setValue(res.savingsDeduction);
+      this.frmEmployer.get('gasolineCard').setValue(res.gasolineCard);
       
       let admissionDate   = new Date(res.admissionDate.toString());      
-      this.frmEmployer.get('admissionDate').setValue(new NgbDate(admissionDate.getFullYear(), admissionDate.getMonth(), admissionDate.getDate()));
+      this.frmEmployer.get('admissionDate').setValue(new NgbDate(admissionDate.getFullYear(), admissionDate.getMonth(), admissionDate.getDate()-1));
 
     },(err : HttpErrorResponse) => {
       this._toastService.error(this._formValidationService.messageError(err));
@@ -94,8 +98,14 @@ export class FrmEmployerComponent implements OnInit {
       return;
     }
 
-    const date  = new Date();
-    const idUser = this._localStorage.get("id");
+    const date        : Date      = new Date();
+    const idUser      :number     = Number.parseInt(this._localStorage.get("id"));
+    const status      : string    = this.frmEmployer.get('status').value;
+    const admiDate    : NgbDate   = this.frmEmployer.get('admissionDate').value;
+    const admiDateFor : Date      = new Date();
+    admiDateFor.setFullYear(admiDate.year);
+    admiDateFor.setMonth(admiDate.month);
+    admiDateFor.setDate(admiDate.day);
 
     const params : EmployerInterface = {
       id                  : this.id,
@@ -105,11 +115,12 @@ export class FrmEmployerComponent implements OnInit {
       name                : this.frmEmployer.get('name').value,
       lastName            : this.frmEmployer.get('lastName').value,
       motherLastName      : this.frmEmployer.get('motherLastName').value,
-      status              : this.frmEmployer.get('status').value,
-      admissionDate       : this.frmEmployer.get('admissionDate').value,
+      status              : status ? 1 : 0,
+      admissionDate       : admiDateFor,
       baseIncome          : this.frmEmployer.get('baseIncome').value,
       breakfastDeduction  : this.frmEmployer.get('breakfastDeduction').value,
       savingsDeduction    : this.frmEmployer.get('savingsDeduction').value,
+      gasolineCard        : this.frmEmployer.get('gasolineCard').value,
       createdAt           : date,
       createdBy           : Number.parseInt(idUser.toString()),
       updatedAt           : date,

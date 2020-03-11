@@ -90,7 +90,7 @@
                                         <div class="col-12 col-sm-7 col-md-7 col-lg-7 col-xl-7 paddingInput">
                                             <div class="input-group">
                                                 <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-                                                <input type="text" id="baseIncome" class="form-control col-12" formControlName="baseIncome" [ngClass]="inputValid('baseIncome')">
+                                                <input type="text" id="baseIncome" class="form-control col-12" formControlName="baseIncome" [ngClass]="inputValid('baseIncome')" mask="0*.00">
                                             </div>
                                             <div *ngIf="showErrors('baseIncome')" class="text-error">
                                                 <div *ngIf="frmEmployer.controls['baseIncome'].errors.required">Campo requerido.</div>
@@ -102,7 +102,7 @@
                                         <div class="col-12 col-sm-7 col-md-7 col-lg-7 col-xl-7 paddingInput">
                                             <div class="input-group">
                                                 <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-                                                <input type="text" id="breakfastDeduction" class="form-control col-12" formControlName="breakfastDeduction" [ngClass]="inputValid('breakfastDeduction')">
+                                                <input type="text" id="breakfastDeduction" class="form-control col-12" formControlName="breakfastDeduction" [ngClass]="inputValid('breakfastDeduction')" mask="0*.00">
                                             </div>                                            
                                             <div *ngIf="showErrors('breakfastDeduction')" class="text-error">
                                                 <div *ngIf="frmEmployer.controls['breakfastDeduction'].errors.required">Campo requerido.</div>
@@ -114,10 +114,22 @@
                                         <div class="col-12 col-sm-7 col-md-7 col-lg-7 col-xl-7 paddingInput">
                                             <div class="input-group">
                                                 <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-                                                <input type="text" id="savingsDeduction" class="form-control col-12" formControlName="savingsDeduction" [ngClass]="inputValid('savingsDeduction')">
+                                                <input type="text" id="savingsDeduction" class="form-control col-12" formControlName="savingsDeduction" [ngClass]="inputValid('savingsDeduction')" mask="0*.00">
                                             </div> 
                                             <div *ngIf="showErrors('savingsDeduction')" class="text-error">
                                                 <div *ngIf="frmEmployer.controls['savingsDeduction'].errors.required">Campo requerido.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 font-weight-bold text-right">Tarjeta De Gasolina*:</label>
+                                        <div class="col-12 col-sm-7 col-md-7 col-lg-7 col-xl-7 paddingInput">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend"><span class="input-group-text">$</span></div>
+                                                <input type="text" id="gasolineCard" class="form-control col-12" formControlName="gasolineCard" [ngClass]="inputValid('gasolineCard')" mask="0*.00">
+                                            </div> 
+                                            <div *ngIf="showErrors('gasolineCard')" class="text-error">
+                                                <div *ngIf="frmEmployer.controls['gasolineCard'].errors.required">Campo requerido.</div>
                                             </div>
                                         </div>
                                     </div>

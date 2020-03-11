@@ -26,6 +26,7 @@
     "bootstrap": "^4.4.1",
     "font-awesome": "^4.7.0",
     "jquery": "^3.4.1",
+    "ngx-mask": "^8.1.7",
     "ngx-permissions": "^7.0.3",
     "ngx-spinner": "^8.1.0",
     "ngx-toastr": "^12.0.0",

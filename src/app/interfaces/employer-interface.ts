@@ -11,6 +11,7 @@ export interface EmployerInterface {
     baseIncome          : number;
     breakfastDeduction  : number;
     savingsDeduction    : number;
+    gasolineCard        : number;
     createdAt           : Date;
     createdBy           : number;
     updatedAt           : Date;

@@ -8,9 +8,11 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" routerLink="/payroll/{{this.id}}"><i class="fa fa-bank"></i> Mi Nómina <span class="sr-only">(current)</span></a>
-        </li>
+        <ng-template [ngxPermissionsOnly]="'ADMIN'">
+          <li class="nav-item active">
+            <a class="nav-link" routerLink="/payroll/{{this.id}}"><i class="fa fa-bank"></i> Mi Nómina <span class="sr-only">(current)</span></a>
+          </li>
+        </ng-template>        
         <ng-template [ngxPermissionsOnly]="'ADMIN'">
           <li class="nav-item active" >          
             <a class="nav-link" routerLink="/employer"><i class="fa fa-users"></i> Empleados <span class="sr-only">(current)</span></a>
@@ -18,7 +20,7 @@
         </ng-template>
         <ng-template [ngxPermissionsOnly]="'ADMIN'">
           <li class="nav-item active">
-            <a class="nav-link" routerLink="/todo"><i class="fa fa-balance-scale"></i> Generar Nóminas <span class="sr-only">(current)</span></a>
+            <a class="nav-link" routerLink="/payroll"><i class="fa fa-balance-scale"></i> Generar Nóminas <span class="sr-only">(current)</span></a>
           </li>
         </ng-template>        
       </ul>

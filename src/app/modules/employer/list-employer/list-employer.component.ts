@@ -18,7 +18,6 @@ export class ListEmployerComponent implements OnInit {
   listData  : EmployerInterface[] = [];
   page      : number              = 1;
   countData : number              = 0;
-    //admissionDate : new Date(),
 
   filters   : EmployerFiltersRequestInterface    = {
     id            : 0,
@@ -45,7 +44,6 @@ export class ListEmployerComponent implements OnInit {
     this._employerService.get(params).subscribe(res => {
       this.listData   = res.employers;
       this.countData  = res.count;
-      this.page       = res.page;
     }, (err : HttpErrorResponse) => {
       this._toastService.error(this._formValidationService.messageError(err));
     });

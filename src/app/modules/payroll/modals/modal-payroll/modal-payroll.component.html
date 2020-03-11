@@ -1,0 +1,67 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{title}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col">
+            <h6>{{data.name}}</h6>
+            <p class="font-weight-light">
+                MENSUAL - {{nameMonth}} {{data.year}} del {{dayInit}} al {{dayEnd}}
+            </p>
+            <div class="row">
+               <div class="col">
+                    <table class="table table-sm  table-striped">
+                        <tr>
+                            <td class="font-weight-light">Ingreso base</td>
+                            <th class="text-right">{{data.baseIncome | currency}}</th>
+                        </tr>
+                        <tr>
+                            <th>Total Percepciones</th>
+                            <th class="text-right">{{data.totalPerception | currency}}</th>
+                        </tr>
+                    </table>
+               </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                     <table class="table table-sm  table-striped">
+                         <tr>
+                             <td class="font-weight-light">Retención por ahorro</td>
+                             <th class="text-right">{{data.savingMoney | currency}}</th>
+                         </tr>
+                         <tr>
+                             <td class="font-weight-light">Desayunos</td>
+                             <th class="text-right">{{data.breakfastDeduction | currency}}</th>
+                         </tr>
+                         <tr>
+                             <td class="font-weight-light">Utilizado en tarjeta Gasmart</td>
+                             <th class="text-right">{{data.gasolineCard | currency}}</th>
+                         </tr>
+                         <tr>
+                             <th>Total Deducciones</th>
+                             <th class="text-right">{{data.totalDeduction | currency}}</th>
+                         </tr>
+                     </table>
+                </div>
+             </div>
+             <br>
+             <div class="row">
+                <div class="col">
+                     <table class="table table-sm  table-striped">
+                         <tr>
+                             <th>Depositado</th>
+                             <th class="text-success text-right">{{data.deposit | currency}}</th>
+                         </tr>
+                     </table>
+                </div>
+             </div>
+        </div>
+    </div>        
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss()"><i class="fa fa-close"></i> Cerrar</button>
+</div>

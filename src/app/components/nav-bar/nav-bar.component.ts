@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from 'angular-2-local-storage';
 import { Router } from '@angular/router';
+import { NgxPermissionsService } from 'ngx-permissions';
 
 @Component({
   selector: 'app-nav-bar',
@@ -10,8 +11,9 @@ import { Router } from '@angular/router';
 export class NavBarComponent implements OnInit {
   id : number;
   constructor(
-    private _route        : Router,
-    private _localStorage : LocalStorageService
+    private _route              : Router,
+    private _localStorage       : LocalStorageService,
+    private permissionsService  : NgxPermissionsService
   ) { }
 
   ngOnInit(): void {
@@ -20,6 +22,7 @@ export class NavBarComponent implements OnInit {
   }
 
   logout():void{
+    this.permissionsService.loadPermissions([]);
     let keys : string[] = this._localStorage.keys();
 
     keys.forEach(x => {
