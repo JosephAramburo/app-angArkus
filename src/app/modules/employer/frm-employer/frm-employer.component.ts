@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { EmployerService } from '@services/employer.service';
 import { EmployerInterface } from '@interfaces/employer-interface';
 import { LocalStorageService } from 'angular-2-local-storage';
+import {NgbDate, NgbCalendar, NgbDateParserFormatter} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-frm-employer',
@@ -19,6 +20,7 @@ export class FrmEmployerComponent implements OnInit {
   title           : string  = 'Agregar Empleado';
   type            : string  = 'save';
   id              : number;
+  startDate      : NgbDate;
 
   constructor(
     private _formValidationService  : FormValidationService,
@@ -26,8 +28,11 @@ export class FrmEmployerComponent implements OnInit {
     private _router                 : Router,
     private _toastService           : ToastrService,
     private _route                  : ActivatedRoute,
-    private _localStorage           : LocalStorageService
-  ) { }
+    private _localStorage           : LocalStorageService,
+    private calendar                : NgbCalendar
+  ) { 
+    this.startDate = calendar.getToday();
+  }
 
   ngOnInit(): void {
     this.createForm();
@@ -37,17 +42,17 @@ export class FrmEmployerComponent implements OnInit {
   createForm():void{
     this.frmEmployer = new FormGroup({
       email                 : new FormControl('', Validators.required),
-      password              : new FormControl('', Validators.required),
+      password              : new FormControl(''),
       role                  : new FormControl('', Validators.required),
       name                  : new FormControl('', Validators.required),
       lastName              : new FormControl('', Validators.required),
       motherLastName        : new FormControl('', Validators.required),
       status                : new FormControl(true, Validators.required),
-      admissionDate         : new FormControl('', Validators.required),
+      admissionDate         : new FormControl(this.calendar.getToday(), Validators.required),
       baseIncome            : new FormControl('', Validators.required),
       breakfastDeduction    : new FormControl('', Validators.required),
       savingsDeduction      : new FormControl('', Validators.required)      
-    });    
+    });        
   }
 
   getParams():void{
@@ -64,9 +69,20 @@ export class FrmEmployerComponent implements OnInit {
 
   getById():void{
     this._employerService.getbyId(this.id).subscribe(res => {
-      // this.frmEmployer.get('description').setValue(res.description);
-      // this.frmEmployer.get('status').setValue(res.status);
+      this.frmEmployer.get('email').setValue(res.email);
+      this.frmEmployer.get('password').setValue("");
+      this.frmEmployer.get('role').setValue(res.role);
+      this.frmEmployer.get('name').setValue(res.name);
+      this.frmEmployer.get('lastName').setValue(res.lastName);
+      this.frmEmployer.get('motherLastName').setValue(res.motherLastName);
+      this.frmEmployer.get('status').setValue(res.status);
+      this.frmEmployer.get('baseIncome').setValue(res.baseIncome);
+      this.frmEmployer.get('breakfastDeduction').setValue(res.breakfastDeduction);
+      this.frmEmployer.get('savingsDeduction').setValue(res.savingsDeduction);  
       
+      let admissionDate   = new Date(res.admissionDate.toString());      
+      this.frmEmployer.get('admissionDate').setValue(new NgbDate(admissionDate.getFullYear(), admissionDate.getMonth(), admissionDate.getDate()));
+
     },(err : HttpErrorResponse) => {
       this._toastService.error(this._formValidationService.messageError(err));
     });

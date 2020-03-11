@@ -19,7 +19,6 @@ export class EmployerService {
     let httpParams = new HttpParams();
 
     for(let key in params){
-      // if(typeof(params[key]) !== 'undefined' && params[key] !== null && params[key] !== '')
         httpParams = httpParams.append(key, params[key]);
     }
 

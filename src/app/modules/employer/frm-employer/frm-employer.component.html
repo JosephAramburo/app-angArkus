@@ -75,7 +75,7 @@
                                         <label class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 font-weight-bold text-right">Fecha de Ingreso*:</label>
                                         <div class="col-12 col-sm-7 col-md-7 col-lg-7 col-xl-7 paddingInput">
                                             <div class="input-group">
-                                                <input placeholder="yyyy-mm-dd"  name="admissionDate" class="form-control col-12" formControlName="admissionDate" [ngClass]="inputValid('admissionDate')" ngbDatepicker #d="ngbDatepicker">
+                                                <input placeholder="yyyy-mm-dd"  name="admissionDate" class="form-control col-12" formControlName="admissionDate" [ngClass]="inputValid('admissionDate')" ngbDatepicker #d="ngbDatepicker" [startDate]="startDate">
                                                 <div class="input-group-append">
                                                   <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><i class="fa fa-calendar"></i></button>
                                                 </div>
@@ -102,7 +102,7 @@
                                         <div class="col-12 col-sm-7 col-md-7 col-lg-7 col-xl-7 paddingInput">
                                             <div class="input-group">
                                                 <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-                                                <input type="text" id="breakfastDeduction" class="form-control col-12" formControlbreakfastDeduction="breakfastDeduction" [ngClass]="inputValid('breakfastDeduction')">
+                                                <input type="text" id="breakfastDeduction" class="form-control col-12" formControlName="breakfastDeduction" [ngClass]="inputValid('breakfastDeduction')">
                                             </div>                                            
                                             <div *ngIf="showErrors('breakfastDeduction')" class="text-error">
                                                 <div *ngIf="frmEmployer.controls['breakfastDeduction'].errors.required">Campo requerido.</div>
