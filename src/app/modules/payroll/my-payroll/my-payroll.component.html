@@ -23,13 +23,15 @@
                                 </th>
                                 <th scope="col">
                                     CORREO
-                                    <input type="text" id="email" class="form-control form-control-sm col-12" minlength="3" [(ngModel)]="filters.email" [ngModelOptions]="{standalone:true}" (ngModelChange)="changeFilter()">
+                                    <input type="text" id="email" class="form-control form-control-sm col-12" minlength="3" [(ngModel)]="filters.emailEmployer" [ngModelOptions]="{standalone:true}" (ngModelChange)="changeFilter(true, false)">
                                 </th>
-                                <th scope="col">
-                                    EMPLEADO
-                                    <input type="text" id="employer" class="form-control form-control-sm col-12" minlength="3" [(ngModel)]="filters.employer" [ngModelOptions]="{standalone:true}" (ngModelChange)="changeFilter()">
-                                </th>
-                            </ng-template>                            
+                            </ng-template>
+                            <th class="textTop" scope="col">
+                                EMPLEADO
+                                <ng-template [ngxPermissionsOnly]="'ADMIN'">
+                                    <input type="text" id="employer" class="form-control form-control-sm col-12" minlength="3" [(ngModel)]="filters.nameEmployer" [ngModelOptions]="{standalone:true}" (ngModelChange)="changeFilter(false,true)">
+                                </ng-template>                                
+                            </th>
                             <th class="textTop" scope="col">
                                 MES
                                 <select  class="form-control form-control-sm" [(ngModel)]="filters.month" [ngModelOptions]="{standalone:true}" (ngModelChange)="changeFilter()">
@@ -59,9 +61,9 @@
                         <tr *ngFor="let row of listData">
                             <ng-template [ngxPermissionsOnly]="'ADMIN'">
                                 <th scope="row">{{row.id}}</th>
-                                <td>{{row.email}}</td>
-                                <td>{{row.name}}</td>
-                            </ng-template>                            
+                                <td>{{row.email}}</td>                                
+                            </ng-template>
+                            <td>{{row.name}}</td>                
                             <td>{{row.receiptPeriod}}</td>
                             <td>{{row.year}}</td>
                             <ng-template [ngxPermissionsOnly]="'ADMIN'">

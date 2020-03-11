@@ -16,12 +16,13 @@ interface SelectDatePayroll{
 }
 
 interface FilterPayroll{
-  year        : number;
-  month       : number;
-  employer    : string;
-  employerId  : string;
-  email       : string;
-  status      : number;
+  id            : string;
+  year          : number;
+  month         : number;
+  nameEmployer  : string;
+  employerId    : string;
+  emailEmployer : string;
+  status        : number;
 }
 
 
@@ -50,12 +51,13 @@ export class MyPayrollComponent implements OnInit {
     status        : 2
   };
   filters : FilterPayroll = {
-    month       : 0,
-    year        : 0,
-    employer    : '',
-    employerId  : '',
-    email       : '',
-    status      : 2
+    id            : '',
+    month         : 0,
+    year          : 0,
+    nameEmployer  : '',
+    employerId    : '',
+    emailEmployer : '',
+    status        : 2
   };
 
   constructor(
@@ -73,7 +75,7 @@ export class MyPayrollComponent implements OnInit {
 
   getParams():void{
     this._route.params.subscribe(params => {
-      this.id = typeof(params.id) !== 'undefined'  && params.id !== 'add' ? Number.parseInt(params.id) : 0;
+      this.id = typeof(params.id) !== 'undefined'  && params.id !== 'add' ? Number.parseInt(params.id) : 0;      
 
       if(this.id !== 0){
         this.getPayrollByEmployerId();
@@ -167,8 +169,17 @@ export class MyPayrollComponent implements OnInit {
     });
   }
 
-  changeFilter() : void{
+  changeFilter(flagEmail : boolean =  false, flagName : boolean =  false) : void{
+    if(flagEmail && ( this.filters.emailEmployer.length > 0 &&  this.filters.emailEmployer.length < 3))
+      return;
+    if(flagName && (this.filters.nameEmployer.length > 0 && this.filters.nameEmployer.length < 3))
+      return;
 
+    this.filtersToSend.employerId     = this.filters.employerId === '' ? 0 : Number.parseInt(this.filters.employerId);
+    this.filtersToSend.nameEmployer   =  this.filters.nameEmployer;
+    this.filtersToSend.emailEmployer  =  this.filters.emailEmployer;
+
+    this.getParams();
   }
 
 }
